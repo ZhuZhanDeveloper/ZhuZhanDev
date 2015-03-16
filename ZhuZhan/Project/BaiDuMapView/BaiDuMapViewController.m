@@ -64,7 +64,7 @@ int j;
     pointArr = [[NSMutableArray alloc] init];
     coordinates = [[NSMutableArray alloc] init];
     
-    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight)];
     _mapView.zoomEnabled = YES;//允许Zoom
     _mapView.scrollEnabled = YES;//允许Scroll
     _mapView.mapType = BMKMapTypeStandard;//地图类型为标准，可以为卫星，可以开启或关闭交通
@@ -146,7 +146,7 @@ int j;
 
 -(void)showContentView:(UIButton *)button{
     if(showArr.count !=0){
-        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64)];
         [bgView setBackgroundColor:[UIColor clearColor]];
         bgView.userInteractionEnabled = YES;
         UITapGestureRecognizer *bgViewtapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -156,7 +156,7 @@ int j;
         [bgView addGestureRecognizer:bgViewtapGestureRecognizer];
         [self.view addSubview:bgView];
         projectModel *model = [showArr objectAtIndex:button.tag];
-        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, 568, 320, 190) model:model number:[numberArr objectAtIndex:button.tag]];
+        _MapContent = [[MapContentView alloc] initWithFrame:CGRectMake(0, kScreenHeight, 320, 190) model:model number:[numberArr objectAtIndex:button.tag]];
         UITapGestureRecognizer* tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoProgramDetailView:)];
         [_MapContent addGestureRecognizer:tap];
         _MapContent.tag=button.tag;
@@ -188,7 +188,7 @@ int j;
     [bgView removeFromSuperview];
     bgView=nil;
     [UIView animateWithDuration:0.5 animations:^{
-        _MapContent.frame = CGRectMake(0, 568, 611, 260);
+        _MapContent.frame = CGRectMake(0, kScreenHeight, 611, 260);
         [_MapContent removeFromSuperview];
         _MapContent = nil;
     }];
@@ -520,8 +520,12 @@ int j;
                 //[self judgeBtnEnable];
             }
         }
+        self.nextBtn.enabled = YES;
+        self.lastBtn.enabled = YES;
     } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] radius:distance startIndex:tempStartIndex noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view reloadBlock:^{
+        self.nextBtn.enabled = YES;
+        self.lastBtn.enabled = YES;
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
         }];
     }];
@@ -571,6 +575,8 @@ int j;
 }
 
 -(void)nextPage{
+    self.nextBtn.enabled = NO;
+    self.lastBtn.enabled = NO;
     if (!self.nextBtn.enabled) {
         [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
         self.pageCount++;
@@ -588,7 +594,8 @@ int j;
 }
 
 -(void)lastPage{
-    NSLog(@"222");
+    self.nextBtn.enabled = NO;
+    self.lastBtn.enabled = NO;
     j = 0;
     [showArr removeAllObjects];
     [logArr removeAllObjects];
@@ -670,6 +677,8 @@ int j;
 -(void)judgeBtnEnable{
     self.nextBtn.enabled=(startIndex<allCount-1);
     self.lastBtn.enabled=(self.pageCount>1);
+    self.nextBtn.enabled = YES;
+    self.lastBtn.enabled = YES;
 }
 
 - (void)didFailToLocateUserWithError:(NSError *)error{

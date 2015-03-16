@@ -31,7 +31,7 @@
 }
 
 -(void)loadIndicatorView{
-    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, 568) superView:self.view];
+    self.loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 64.5, 320, kScreenHeight) superView:self.view];
 }
 
 -(void)endIndicatorView{
@@ -72,7 +72,7 @@
         }
     } startIndex:0 noNetWork:^{
         [self endIndicatorView];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -80,7 +80,7 @@
 
 -(void)addNoProductView{
     if(self.noProductView == nil){
-        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64, 320, 568-49-64)];
+        self.noProductView = [[NoProductView alloc] initWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64)];
         [self.view addSubview:self.noProductView];
     }
     // 1.下拉刷新(进入刷新状态就会调用self的headerRereshing)
@@ -90,7 +90,7 @@
 }
 
 -(void)loadQtmquitView{
-    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 0, 320, 568-49)];
+    qtmquitView = [[TMQuiltView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight-49)];
 	qtmquitView.delegate = self;
 	qtmquitView.dataSource = self;
 	qtmquitView.showsVerticalScrollIndicator=NO;
@@ -143,7 +143,7 @@
         }
     } startIndex:0 noNetWork:^{
         [qtmquitView headerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self headerRereshing];
         }];
     }];
@@ -172,7 +172,7 @@
         }
     } startIndex:startIndex+1 noNetWork:^{
         [qtmquitView footerEndRefreshing];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-49-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-49-64) superView:self.view reloadBlock:^{
             [self footerRereshing];
         }];
     }];

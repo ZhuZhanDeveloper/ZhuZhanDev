@@ -18,6 +18,7 @@ static int j;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.image = [[UIImageView alloc] initWithFrame:self.frame];
+        self.image.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.image];
         j=1;
         self.image.image = [GetImagePath getImagePath:@"020001"];
@@ -34,7 +35,7 @@ static int j;
 }
 -(void)addImage:(int)index{
     UIScrollView* scrollView=(UIScrollView*)self.superview;
-    scrollView.contentSize=CGSizeMake(320*3, 568);
+    scrollView.contentSize=CGSizeMake(320*3, kScreenHeight);
     [scrollView setContentOffset:CGPointMake(320, 0)];
     if(index <=30){
         if(index<10){

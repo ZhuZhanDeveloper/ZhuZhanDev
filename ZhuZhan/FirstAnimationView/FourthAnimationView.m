@@ -8,6 +8,7 @@
 
 #import "FourthAnimationView.h"
 #import "GetImagePath.h"
+#define Height (kScreenHeight==480?412:500)
 @interface FourthAnimationView ()
 @property(nonatomic,strong)UIImageView *image;
 @property(nonatomic,strong)UIButton *inViewBtn;
@@ -20,6 +21,7 @@ static int j;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.image = [[UIImageView alloc] initWithFrame:self.frame];
+        self.image.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.image];
         j=1;
         self.image.image = [GetImagePath getImagePath:@"040001"];
@@ -50,8 +52,9 @@ static int j;
         });
     }else{
         self.inViewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.inViewBtn.frame = CGRectMake(100, 500, 120, 50);
+        self.inViewBtn.frame = CGRectMake(100, Height, 120, 50);
         [self.inViewBtn addTarget:self action:@selector(dismis) forControlEvents:UIControlEventTouchUpInside];
+        //[self.inViewBtn setBackgroundColor:[UIColor yellowColor]];
         [self addSubview:self.inViewBtn];
         [self.delegate endAnimation];
     }

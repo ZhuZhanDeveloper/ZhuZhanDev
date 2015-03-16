@@ -102,7 +102,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 
 -(void)firstNetWork{
     self.tableView.scrollEnabled=NO;
-    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
     if(![[LoginSqlite getdata:@"deviceToken"] isEqualToString:@""]){
         if([[LoginSqlite getdata:@"userType"] isEqualToString:@"Company"]){
             [CompanyApi GetCompanyDetailWithBlock:^(NSMutableArray *posts, NSError *error) {
@@ -122,7 +122,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -149,7 +149,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -190,7 +190,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled=NO;
         [LoadingView removeLoadingView:loadingView];
         loadingView = nil;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self firstNetWork];
         }];
@@ -257,7 +257,6 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [_datasource addObject:model.a_time];
             }
             _timeScroller.hidden=YES;
-            NSLog(@"===>%d",showArr.count);
             [MyTableView reloadDataWithTableView:self.tableView];
             if(showArr.count == 0){
                 [MyTableView hasData:self.tableView];
@@ -272,7 +271,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     } userId:[LoginSqlite getdata:@"userId"] startIndex:startIndex+1 noNetWork:^{
         [self.tableView footerEndRefreshing];
         self.tableView.scrollEnabled=NO;
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self footerRereshing];
         }];
@@ -722,7 +721,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -749,7 +748,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 self.tableView.scrollEnabled=NO;
                 [LoadingView removeLoadingView:loadingView];
                 loadingView = nil;
-                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+                [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
                     self.tableView.scrollEnabled=YES;
                     [self firstNetWork];
                 }];
@@ -792,7 +791,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
         self.tableView.scrollEnabled=NO;
         __weak ContactViewController *wself = self;
         [wself.pathCover stopRefresh];
-        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view reloadBlock:^{
             self.tableView.scrollEnabled=YES;
             [self reloadView];
         }];
