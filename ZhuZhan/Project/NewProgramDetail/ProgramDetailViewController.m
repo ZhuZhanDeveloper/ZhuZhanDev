@@ -35,6 +35,7 @@
 @property(nonatomic,strong)UIView* themeView;
 @property(nonatomic,strong)UITableView* contentTableView;
 @property(nonatomic,strong)UITableView* selectTableView;
+@property(nonatomic,strong)UIScrollView *selectScrollView;
 
 @property(nonatomic,strong)LandInfo* landInfo;//土地信息
 @property(nonatomic,strong)MainDesign* mainDesign;//主体设计
@@ -287,14 +288,19 @@
     self.selectTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
     self.selectTableView.delegate=self;
     self.selectTableView.dataSource=self;
-    self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
+    //self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
     [self.selectTableView registerClass:[ProgramSelectViewCell class] forCellReuseIdentifier:@"Cell"];
     self.selectTableView.showsVerticalScrollIndicator=NO;
     self.selectTableView.scrollEnabled=NO;
     self.selectTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.selectTableView.backgroundColor=[UIColor colorWithWhite:1 alpha:.90];
     
-    [self.view addSubview:self.selectTableView];
+    self.selectScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, kScreenHeight-64.5)];
+    self.selectScrollView.contentSize = self.selectTableView.frame.size;
+    self.selectScrollView.center=CGPointMake(160, -(kScreenHeight-64.5)*.5);
+    [self.selectScrollView addSubview:self.selectTableView];
+    
+    [self.view addSubview:self.selectScrollView];
     //用于存放使sectionHeader可以被点击的button的array
     //self.sectionButtonArray=[NSMutableArray array];
 }
@@ -378,9 +384,11 @@
 -(void)change{
     NSLog(@"用户选择了筛选");
     self.isNeedAnimation=NO;
-    [self.view addSubview:self.selectTableView];
+    //[self.view addSubview:self.selectTableView];
+    [self.view addSubview:self.selectScrollView];
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectTableView.center=CGPointMake(160, (568-64)*.5+64);
+        //self.selectTableView.center=CGPointMake(160, (568-64)*.5+64);
+        self.selectScrollView.center=CGPointMake(160, (kScreenHeight-64)*.5+64);
     }];
 }
 
@@ -467,8 +475,11 @@
         label.center=CGPointMake(160, self.contentTableView.contentSize.height-20);
         [self.contentTableView addSubview:label];
         
-        UIView* tempView=[[UIView alloc]initWithFrame:self.selectTableView.bounds];
-        [self.selectTableView addSubview:tempView];
+//        UIView* tempView=[[UIView alloc]initWithFrame:self.selectTableView.bounds];
+//        [self.selectTableView addSubview:tempView];
+        
+        UIView* tempView=[[UIView alloc]initWithFrame:self.selectScrollView.bounds];
+        [self.selectScrollView addSubview:tempView];
         
         CGRect frame=self.animationView.frame;
         frame.size.height+=.000001;
@@ -527,9 +538,11 @@
 -(void)selectCancel{
     self.isNeedAnimation=YES;
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
+        //self.selectTableView.center=CGPointMake(160, -(568-64)*.5);
+        self.selectScrollView.center=CGPointMake(160, -(kScreenHeight-64)*.5);
     } completion:^(BOOL finished){
-        [self.selectTableView removeFromSuperview];
+        //[self.selectTableView removeFromSuperview];
+        [self.selectScrollView removeFromSuperview];
     }];
 }
 

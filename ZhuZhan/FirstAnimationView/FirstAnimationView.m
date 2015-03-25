@@ -18,6 +18,7 @@ static int j ;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self=[super initWithFrame:frame]) {
         self.image = [[UIImageView alloc] initWithFrame:self.frame];
+        self.image.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:self.image];
         j=1;
         [self addImage:j];

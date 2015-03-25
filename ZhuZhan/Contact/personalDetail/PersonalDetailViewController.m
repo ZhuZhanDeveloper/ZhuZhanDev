@@ -151,7 +151,7 @@
 }
 
 -(void)firstNetWork{
-    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, 568) superView:self.view];
+    loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
     [IsFocusedApi GetIsFocusedListWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
             self.isFocused=[NSString stringWithFormat:@"%@",posts[0][@"isFocused"]];
@@ -160,7 +160,7 @@
             [LoginAgain AddLoginView:NO];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.contactId EntityCategory:@"Personal" noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];

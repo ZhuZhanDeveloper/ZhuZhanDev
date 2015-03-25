@@ -80,8 +80,10 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // 要使用百度地图，请先启动BaiduMapManager
+    //9uNmKMAvjHLBdkWD42j21yEp 299
+    //57gqKHfcRsYLwlxioZvblI5G 99
 	_mapManager = [[BMKMapManager alloc]init];
-	BOOL ret = [_mapManager start:@"57gqKHfcRsYLwlxioZvblI5G" generalDelegate:self];
+	BOOL ret = [_mapManager start:@"9uNmKMAvjHLBdkWD42j21yEp" generalDelegate:self];
 	if (!ret) {
 		NSLog(@"manager start failed!");
     }else{
@@ -90,14 +92,15 @@
     [LoginSqlite opensql];
     [RecordSqlite opensql];
     [ProjectSqlite opensql];
-    
     HomePageViewController *homeVC = [[HomePageViewController alloc] init];
     self.window.rootViewController = homeVC;
     [self.window makeKeyAndVisible];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"firstLaunch"]){
         NSLog(@"第一次启动程序");
-        FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
-        [self.window addSubview:firstAnimationView];
+        //if(self.window.bounds.size.height != 480){
+            FirstOpenAppAnimationView* firstAnimationView=[[FirstOpenAppAnimationView alloc]initWithFrame:self.window.frame];
+            [self.window addSubview:firstAnimationView];
+        //}
     }
 
 //    [UIView animateWithDuration:1.5 animations:^{

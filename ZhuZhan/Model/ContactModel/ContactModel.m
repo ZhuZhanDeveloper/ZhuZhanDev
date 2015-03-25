@@ -27,7 +27,7 @@
     self.constellation = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"constellation"]]];
     self.bloodType = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"bloodType"]]];
     self.email = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"email"]]];
-    self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"cellphone"]]];
+    self.cellPhone = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",[_dict objectForKey:@"loginTel"]]];
     if(![[NSString stringWithFormat:@"%@",_dict[@"userParticulars"]]isEqualToString:@"<null>"]){
         self.companyName = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"companyName"]]];
         self.position = [ProjectStage ProjectStrStage:[NSString stringWithFormat:@"%@",_dict[@"userParticulars"][@"duties"]]];

@@ -151,7 +151,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
     [self initNavi];
 
     [self initMyTableView];
-    self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, 568) superView:self.view];
+    self.loadingView=[LoadingView loadingViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view];
 
     //因为动态详情进来的产品model.content是评论而不是产品描述内容，所以先不出mainView，加载后会更新
     if (!(self.activesModel&&[self.category isEqualToString:@"Product"])) {
@@ -174,7 +174,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
             [self getNetWorkData];
         }
     } userId:[LoginSqlite getdata:@"userId"] targetId:self.entityID EntityCategory:self.category noNetWork:^{
-        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
             [self firstNetWork];
         }];
     }];
@@ -197,7 +197,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 [self myTableViewReloadData];
             }
         } entityId:self.entityID entityType:@"Product" noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self getNetWorkData];
             }];
         }];
@@ -229,7 +229,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
                 }
             }
         } url:self.entityUrl noNetWork:^{
-            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+            [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight-64) superView:self.view reloadBlock:^{
                 [self getNetWorkData];
             }];
         }];
@@ -576,7 +576,7 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 //=============================================================
 //=============================================================
 -(void)initMyTableView{
-    self.tableView=[[MyTableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView=[[MyTableView alloc]initWithFrame:CGRectMake(0, 0, 320, kScreenHeight) style:UITableViewStylePlain];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
