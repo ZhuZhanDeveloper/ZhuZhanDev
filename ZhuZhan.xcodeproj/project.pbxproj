@@ -657,6 +657,7 @@
 		5B7AA6EA1A58D93E000FBFF2 /* icon03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */; };
 		5B7AA6EB1A58D93E000FBFF2 /* icon04.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E31A58D93E000FBFF2 /* icon04.png */; };
 		5B7AA6EC1A58D93E000FBFF2 /* icon04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */; };
+		5B8A42BE1AC2B265009BB6B7 /* ALLProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A42BD1AC2B265009BB6B7 /* ALLProjectViewController.m */; };
 		5B8DAED41A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED11A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B8DAED31A7F1EBD003C7E41 /* libbaidumapapi.a */; };
 		5B9FDE9F1A6CD47000215485 /* 项目详情默认0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B9FDE9D1A6CD47000215485 /* 项目详情默认0.png */; };
@@ -2154,6 +2155,8 @@
 		5B7AA6E21A58D93E000FBFF2 /* icon03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon03@2x.png"; sourceTree = "<group>"; };
 		5B7AA6E31A58D93E000FBFF2 /* icon04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon04.png; sourceTree = "<group>"; };
 		5B7AA6E41A58D93E000FBFF2 /* icon04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon04@2x.png"; sourceTree = "<group>"; };
+		5B8A42BC1AC2B265009BB6B7 /* ALLProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALLProjectViewController.h; sourceTree = "<group>"; };
+		5B8A42BD1AC2B265009BB6B7 /* ALLProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLProjectViewController.m; sourceTree = "<group>"; };
 		5B8DAE931A7F1EA9003C7E41 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		5B8DAE941A7F1EA9003C7E41 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
 		5B8DAE951A7F1EA9003C7E41 /* BMKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKAnnotation.h; sourceTree = "<group>"; };
@@ -3641,6 +3644,8 @@
 				042D9DE519B559FC00689C5D /* ProjectTableViewCell.m */,
 				042D9DE619B559FC00689C5D /* ProjectTableViewController.h */,
 				042D9DE719B559FC00689C5D /* ProjectTableViewController.m */,
+				5B8A42BC1AC2B265009BB6B7 /* ALLProjectViewController.h */,
+				5B8A42BD1AC2B265009BB6B7 /* ALLProjectViewController.m */,
 				042D9DE819B559FC00689C5D /* SearchView */,
 				042D9E0519B559FC00689C5D /* Topics */,
 			);
@@ -6169,6 +6174,7 @@
 				5BE08ED61A35900000495EEB /* ThirdAnimationView.m in Sources */,
 				5B0A006C19B5874500500C05 /* TMPhotoQuiltViewCell.m in Sources */,
 				0426C2D819922D5A00CD8822 /* GPUImageWhiteBalanceFilter.m in Sources */,
+				5B8A42BE1AC2B265009BB6B7 /* ALLProjectViewController.m in Sources */,
 				0426C2CD19922D5A00CD8822 /* GPUImageTransformFilter.m in Sources */,
 				0426C25E19922D5A00CD8822 /* GPUImageDifferenceBlendFilter.m in Sources */,
 				D3D21EB11A36F77C00ADD653 /* ProjectSqlite.m in Sources */,
