@@ -1165,6 +1165,7 @@
 		D3D9C91F1A13446B001D3A64 /* 主菜单03a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */; };
 		D3D9C9201A13446B001D3A64 /* 主菜单04a.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9181A13446B001D3A64 /* 主菜单04a.png */; };
 		D3D9C9211A13446B001D3A64 /* 主菜单04a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */; };
+		D3DA400C1AC3EEAC001251C6 /* ContactsAddApi.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DA400B1AC3EEAC001251C6 /* ContactsAddApi.m */; };
 		D3E0E94B1A398A3600A41D42 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D3E0E94A1A398A3600A41D42 /* Settings.bundle */; };
 		D3E1AAFD1A7648FC00BFC6E1 /* Shape-1.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */; };
 		D3E1AAFE1A7648FC00BFC6E1 /* Shape-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */; };
@@ -2815,6 +2816,8 @@
 		D3D9C9171A13446B001D3A64 /* 主菜单03a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单03a@2x.png"; sourceTree = "<group>"; };
 		D3D9C9181A13446B001D3A64 /* 主菜单04a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a.png"; sourceTree = "<group>"; };
 		D3D9C9191A13446B001D3A64 /* 主菜单04a@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主菜单04a@2x.png"; sourceTree = "<group>"; };
+		D3DA400A1AC3EEAC001251C6 /* ContactsAddApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsAddApi.h; sourceTree = "<group>"; };
+		D3DA400B1AC3EEAC001251C6 /* ContactsAddApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsAddApi.m; sourceTree = "<group>"; };
 		D3E0E94A1A398A3600A41D42 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D3E1AAFB1A7648FC00BFC6E1 /* Shape-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1.png"; sourceTree = "<group>"; };
 		D3E1AAFC1A7648FC00BFC6E1 /* Shape-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Shape-1@2x.png"; sourceTree = "<group>"; };
@@ -4878,6 +4881,7 @@
 		D3AC618B19B6BF930015B62F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D3DA40091AC3EE99001251C6 /* ContactsAdd */,
 				D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */,
 				D36040E319F51E6900E9727D /* CompanyModel */,
 				04248B0219C67C1D000FB8A9 /* ProductModel */,
@@ -5262,6 +5266,15 @@
 				D3D946A81A6CDD33003A68D5 /* YLLabel.m */,
 			);
 			path = YLLabel;
+			sourceTree = "<group>";
+		};
+		D3DA40091AC3EE99001251C6 /* ContactsAdd */ = {
+			isa = PBXGroup;
+			children = (
+				D3DA400A1AC3EEAC001251C6 /* ContactsAddApi.h */,
+				D3DA400B1AC3EEAC001251C6 /* ContactsAddApi.m */,
+			);
+			path = ContactsAdd;
 			sourceTree = "<group>";
 		};
 		D3EACDE3199327780058FC9D /* QuadCurveMenu */ = {
@@ -6300,6 +6313,7 @@
 				0426C2F019922D5A00CD8822 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				042D9E2919B559FC00689C5D /* TopicsDetailTableViewCell.m in Sources */,
 				042D9E3519B55AB800689C5D /* UIPlaceHolderTextView.m in Sources */,
+				D3DA400C1AC3EEAC001251C6 /* ContactsAddApi.m in Sources */,
 				0426C24B19922D5A00CD8822 /* GPUImageBrightnessFilter.m in Sources */,
 				042D9E1C19B559FC00689C5D /* AdvancedSearchViewController.m in Sources */,
 				5B13C70019B6AB0C008EA7A0 /* ProductDetailViewController.m in Sources */,
