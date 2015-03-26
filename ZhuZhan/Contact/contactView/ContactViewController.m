@@ -692,9 +692,10 @@ static NSString * const PSTableViewCellIdentifier = @"PSTableViewCellIdentifier"
 }
 
 -(void)finishAddCommentFromDetailWithPosts:(NSMutableArray *)posts{
-    NSLog(@"asdfasdfa ===== %d",indexpath.row);
-    ActivesModel *model = showArr[indexpath.row];
-    [self finishPostCommentWithPosts:posts activesModel:model];
+    if(showArr.count !=0){
+        ActivesModel *model = showArr[indexpath.row];
+        [self finishPostCommentWithPosts:posts activesModel:model];
+    }
 }
 
 -(void)cancelFromAddComment{
