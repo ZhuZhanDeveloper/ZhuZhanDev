@@ -241,6 +241,7 @@
             model.a_avatarUrl = [LoginSqlite getdata:@"userImage"];
             model.a_commentContents = [NSString stringWithFormat:@"%@",comment];
             model.a_time = [NSDate date];
+            model.a_createdBy = [LoginSqlite getdata:@"userId"];
             [showArr insertObject:model atIndex:0];
             projectCommentView = [[ProjectCommentView alloc] initWithCommentModel:model];
             projectCommentView.delegate = self;
@@ -261,6 +262,7 @@
 }
 
 -(void)gotoContactDetail:(NSString *)aid{
+    NSLog(@"===>%@",aid);
     if([aid isEqualToString:[LoginSqlite getdata:@"userId"]]){
         return;
     }
