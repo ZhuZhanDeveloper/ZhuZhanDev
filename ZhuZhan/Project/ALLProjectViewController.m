@@ -43,9 +43,18 @@
     
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
+    [self initTableHeaderView];
+    
     //集成刷新控件
     [self setupRefresh];
     [self firstNetWork];
+    
+}
+
+-(void)initTableHeaderView{
+    UIView* view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+    view.backgroundColor=RGBCOLOR(239, 237, 237);
+    self.tableView.tableHeaderView=view;
 }
 
 - (void)setupRefresh

@@ -1082,6 +1082,8 @@
 		D3BAA7B81A58CB9A008E613F /* 人的详情88-04.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B01A58CB9A008E613F /* 人的详情88-04.png */; };
 		D3BAA7B91A58CB9A008E613F /* 人的详情88-04@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */; };
 		D3CF278A1A008EFF00DDA30D /* ContactBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */; };
+		D3CF94AF1AC3DCD000212031 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CF94AE1AC3DCD000212031 /* AddressBookUI.framework */; };
+		D3CF94B31AC3DD1200212031 /* GetAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CF94B21AC3DD1200212031 /* GetAddressBook.m */; };
 		D3D1A7B719F8E9B40006F954 /* 公司－我的公司_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */; };
 		D3D1A7B819F8E9B40006F954 /* 公司－我的公司_05b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B619F8E9B40006F954 /* 公司－我的公司_05b@2x.png */; };
 		D3D1A7BB19F8F6250006F954 /* 公司－公司详情_05b.png in Resources */ = {isa = PBXBuildFile; fileRef = D3D1A7B919F8F6250006F954 /* 公司－公司详情_05b.png */; };
@@ -2713,6 +2715,9 @@
 		D3BAA7B11A58CB9A008E613F /* 人的详情88-04@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人的详情88-04@2x.png"; sourceTree = "<group>"; };
 		D3CF27881A008EFF00DDA30D /* ContactBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactBackgroundView.h; sourceTree = "<group>"; };
 		D3CF27891A008EFF00DDA30D /* ContactBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactBackgroundView.m; sourceTree = "<group>"; };
+		D3CF94AE1AC3DCD000212031 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		D3CF94B11AC3DD1200212031 /* GetAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAddressBook.h; sourceTree = "<group>"; };
+		D3CF94B21AC3DD1200212031 /* GetAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAddressBook.m; sourceTree = "<group>"; };
 		D3D1A7B319F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B419F8A68F0006F954 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D3D1A7B519F8E9B40006F954 /* 公司－我的公司_05b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "公司－我的公司_05b.png"; sourceTree = "<group>"; };
@@ -2825,6 +2830,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3CF94AF1AC3DCD000212031 /* AddressBookUI.framework in Frameworks */,
+				0426C30919922E2E00CD8822 /* AddressBook.framework in Frameworks */,
 				D3B8F54919D9483B008F6164 /* libz.dylib in Frameworks */,
 				D3B8F54719D94789008F6164 /* iflyMSC.framework in Frameworks */,
 				042D9EAF19B7136600689C5D /* MessageUI.framework in Frameworks */,
@@ -2841,7 +2848,6 @@
 				0426C31319922E6600CD8822 /* QuartzCore.framework in Frameworks */,
 				0426C30F19922E4F00CD8822 /* OpenGLES.framework in Frameworks */,
 				0426C30D19922E4700CD8822 /* SystemConfiguration.framework in Frameworks */,
-				0426C30919922E2E00CD8822 /* AddressBook.framework in Frameworks */,
 				0426C30719922E2500CD8822 /* AdSupport.framework in Frameworks */,
 				0426BFED19922CE400CD8822 /* CoreGraphics.framework in Frameworks */,
 				5B8DAED51A7F1EBD003C7E41 /* libbaidumapapi.a in Frameworks */,
@@ -2894,6 +2900,7 @@
 		0426BFE919922CE400CD8822 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3CF94AE1AC3DCD000212031 /* AddressBookUI.framework */,
 				D3B8F54819D9483B008F6164 /* libz.dylib */,
 				D3B8F54619D94789008F6164 /* iflyMSC.framework */,
 				042D9EAE19B7136600689C5D /* MessageUI.framework */,
@@ -3050,6 +3057,7 @@
 		0426C05519922D5900CD8822 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				D3CF94B01AC3DD1200212031 /* GetAddressBook */,
 				D3D946A61A6CDD33003A68D5 /* YLLabel */,
 				D3D321241A3EAE200009AEEA /* AuthCode */,
 				5B3209FB1A11E75000D19279 /* RemindView */,
@@ -5127,6 +5135,15 @@
 			path = PopView;
 			sourceTree = "<group>";
 		};
+		D3CF94B01AC3DD1200212031 /* GetAddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				D3CF94B11AC3DD1200212031 /* GetAddressBook.h */,
+				D3CF94B21AC3DD1200212031 /* GetAddressBook.m */,
+			);
+			path = GetAddressBook;
+			sourceTree = "<group>";
+		};
 		D3D29B7A1A0DB9AC00CAB1EB /* IsFocused */ = {
 			isa = PBXGroup;
 			children = (
@@ -6162,6 +6179,7 @@
 				5B0A006619B5641900500C05 /* ProductViewController.m in Sources */,
 				04D10BD919AE016A0097C0C6 /* ContactViewController.m in Sources */,
 				0426C23419922D5A00CD8822 /* RegistViewController.m in Sources */,
+				D3CF94B31AC3DD1200212031 /* GetAddressBook.m in Sources */,
 				D3AD60A219AC574A001FD483 /* Reachability.m in Sources */,
 				D3D4FB3A1A08C0C90033BB34 /* UpdataPassWordViewController.m in Sources */,
 				D36040E619F51E8600E9727D /* CompanyModel.m in Sources */,

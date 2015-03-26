@@ -27,6 +27,14 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        GetAddressBook *addressBook = [[GetAddressBook alloc] init];
+        [addressBook registerAddressBook:^(bool granted, NSError *error) {
+            NSLog(@"aaaaaa");
+            NSLog(@"asdfasdf");
+        }];
+    });
+    
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.locationManager = [[CLLocationManager alloc] init];
