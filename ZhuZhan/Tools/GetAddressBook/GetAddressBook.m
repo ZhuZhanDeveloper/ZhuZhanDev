@@ -7,6 +7,7 @@
 //
 
 #import "GetAddressBook.h"
+#import "ContactsAddApi.h"
 @implementation GetAddressBook
 @synthesize addressBook = _addressBook;
 //注册通讯录
@@ -46,6 +47,14 @@
     [self getNameAndPhone:mresults];
 }
 
+-(void)sendAddressBook:(NSMutableArray*)array{
+    [ContactsAddApi ContactsAddWithBlock:^(NSMutableArray *posts, NSError *error) {
+        if (!error) {
+            
+        }
+    } arr:array noNetWork:nil];
+}
+
 //获取联系人名字电话
 -(void)getNameAndPhone:(CFMutableArrayRef)mresults{
     NSMutableArray *allArr = [[NSMutableArray alloc] init];
@@ -67,7 +76,7 @@
         [singleDataDic setObject:ims forKey:@"ims"];
         [allArr addObject:singleDataDic];
     }
-    NSLog(@"allArr==%@",allArr);
+    [self sendAddressBook:allArr];
 }
 
 -(NSObject*)getBaseInformationDicValueWithRecord:(ABRecordRef)record{
@@ -149,6 +158,9 @@
         NSMutableDictionary *addressDic = [[NSMutableDictionary alloc] init];
         //获取地址Label
         NSString* addressLabel = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(address, j));
+        if (!addressLabel) {
+            addressLabel=@"";
+        }
         [addressDic setObject:addressLabel forKey:@"tagName"];
         
         //获取該label下的地址6属性
@@ -194,6 +206,12 @@
         //获取电话Label
         NSString * personPhoneLabel = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(phone, j));
         NSString* tmpPhoneIndex = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, j);
+        if (!personPhoneLabel) {
+            personPhoneLabel=@"";
+        }
+        if (!tmpPhoneIndex) {
+            tmpPhoneIndex=@"";
+        }
         NSMutableDictionary *phoneDic = [[NSMutableDictionary alloc] init];
         [phoneDic setValue:tmpPhoneIndex forKey:@"phoneNumber"];
         [phoneDic setValue:personPhoneLabel forKey:@"tagName"];
@@ -207,7 +225,13 @@
     ABMultiValueRef tmpEmails = ABRecordCopyValue(record, kABPersonEmailProperty);
     for(NSInteger j = 0; j<ABMultiValueGetCount(tmpEmails); j++){
         NSString * personEmailLabel = (__bridge NSString*)ABAddressBookCopyLocalizedLabel(ABMultiValueCopyLabelAtIndex(tmpEmails, j));
+        if (!personEmailLabel) {
+            personEmailLabel=@"";
+        }
         NSString* tmpEmailIndex = (__bridge NSString*)ABMultiValueCopyValueAtIndex(tmpEmails, j);
+        if (!tmpEmailIndex) {
+            tmpEmailIndex=@"";
+        }
         NSMutableDictionary *emailDic = [[NSMutableDictionary alloc] init];
         [emailDic setValue:tmpEmailIndex forKey:@"emailAddress"];
         [emailDic setValue:personEmailLabel forKey:@"tagName"];
