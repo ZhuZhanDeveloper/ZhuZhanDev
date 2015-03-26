@@ -67,6 +67,7 @@
         [singleDataDic setObject:ims forKey:@"ims"];
         [allArr addObject:singleDataDic];
     }
+    NSLog(@"allArr==%@",allArr);
 }
 
 -(NSObject*)getBaseInformationDicValueWithRecord:(ABRecordRef)record{
@@ -79,15 +80,15 @@
       @"companyName":@(kABPersonOrganizationProperty),
       @"duties":@(kABPersonJobTitleProperty),
       @"prefixion":@(kABPersonPrefixProperty),
-      @"suffix":@(kABPersonSuffixProperty)
+      @"suffix":@(kABPersonSuffixProperty),
+      @"firstNamePinyin":@(kABPersonFirstNamePhoneticProperty),
+      @"lastNamePinyin":@(kABPersonLastNamePhoneticProperty)
       };
     NSArray* noDataKeys=
     @[
       @"fullName",
-      @"firstNamePinyin",//以下三待确认
-      @"lastNamePinyin",
       @"fullNamePinyin",
-      @"remark",
+      @"remark"
       ];
     NSMutableDictionary* dataDic=[NSMutableDictionary dictionary];
     [hasDataKeyDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -101,6 +102,7 @@
     [noDataKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [dataDic setObject:@"" forKey:obj];
     }];
+    [dataDic setObject:[[NSUUID UUID] UUIDString] forKey:@"createdBy"];
     return dataDic;
 }
 
@@ -127,6 +129,9 @@
         NSDateFormatter* formatter=[[NSDateFormatter alloc]init];
         formatter.dateFormat=@"yyyy-MM-dd";
         NSString* dateStr=[formatter stringFromDate:date];
+        if (!dateStr) {
+            dateStr=@"";
+        }
         [dataDic setObject:dateStr forKeyedSubscript:key];
     }];
     [noDataKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -219,21 +224,20 @@
     {
         //获取IM Label
         NSString* instantMessageLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(instantMessage, l);
-        NSLog(@"instantMessageLabel ==》 %@",instantMessageLabel);
         //获取該label下的2属性
         NSDictionary* instantMessageContent =(__bridge NSDictionary*) ABMultiValueCopyValueAtIndex(instantMessage, l);
         NSString* IMName = [instantMessageContent valueForKey:(NSString *)kABPersonInstantMessageUsernameKey];
         NSMutableDictionary *IMDic = [[NSMutableDictionary alloc] init];
         if(IMName != nil){
-            [IMDic setValue:IMName forKey:@"tagName"];
-        }else{
-            [IMDic setValue:@"" forKey:@"tagName"];
-        }
-        NSString* service = [instantMessageContent valueForKey:(NSString *)kABPersonInstantMessageServiceKey];
-        if(service != nil){
             [IMDic setValue:IMName forKey:@"information"];
         }else{
             [IMDic setValue:@"" forKey:@"information"];
+        }
+        NSString* service = [instantMessageContent valueForKey:(NSString *)kABPersonInstantMessageServiceKey];
+        if(service != nil){
+            [IMDic setValue:service forKey:@"tagName"];
+        }else{
+            [IMDic setValue:@"" forKey:@"tagName"];
         }
         [IMArr addObject:IMDic];
     }
