@@ -341,6 +341,8 @@ int j;
 
 -(void)drawFunction{
     j=0;
+    self.nextBtn.enabled=NO;
+    self.lastBtn.enabled=NO;
     if(imageView == nil){
         topCount = 0;
         [topBgView removeFromSuperview];
