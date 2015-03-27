@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ContactsAddApi : NSObject
-+ (NSURLSessionDataTask *)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork;
++ (void)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork;
 @end

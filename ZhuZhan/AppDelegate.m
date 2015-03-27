@@ -29,6 +29,8 @@
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //NSString *identifierForAdvertising = [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
+    //NSLog(@"%@",identifierForAdvertising);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         GetAddressBook *addressBook = [[GetAddressBook alloc] init];
         [addressBook registerAddressBook:^(bool granted, NSError *error) {
@@ -36,7 +38,7 @@
             NSLog(@"asdfasdf");
         }];
     });
-    
+    return nil;
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.locationManager = [[CLLocationManager alloc] init];
