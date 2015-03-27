@@ -8,21 +8,21 @@
 
 #import "ContactsAddApi.h"
 #import "ConnectionAvailable.h"
+#import "JSONKit.h"
 @implementation ContactsAddApi
 + (NSURLSessionDataTask *)ContactsAddWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block arr:(NSMutableArray*)arr noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         return nil;
     }
+    
+    NSString* str=[arr JSONString];
+    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
+     [dataDic setObject:str forKey:@"data"];
     NSString *urlStr = [NSString stringWithFormat:@"api/Contacts/ContactsAdd"];
-    return [[AFAppDotNetAPIClient sharedNewClient] POST:urlStr parameters:arr success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON Focused===>%@",JSON);
-        if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
-            NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
-            [mutablePosts addObject:JSON[@"d"][@"data"]];
-            if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
-            }
-        }
+  //  NSString *urlStr = [NSString stringWithFormat:@"contact"];
+    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dataDic success:^(NSURLSessionDataTask * __unused task, id JSON) {
+        NSLog(@"JSON===>%@",JSON);
+        
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {

@@ -21,6 +21,7 @@
 #import "FirstOpenAppAnimationView.h"
 #import "ProjectSqlite.h"
 #import "GetAddressBook.h"
+
 @implementation AppDelegate
 
 + (AppDelegate *)instance {
