@@ -492,8 +492,19 @@ int j;
             tempStartIndex=startIndex-1;
         }
     }
+    BOOL nextBtnEnabled=self.nextBtn.enabled;
+    BOOL lastBtnEnabled=self.lastBtn.enabled;
+    self.nextBtn.enabled=NO;
+    self.lastBtn.enabled=NO;
     [ProjectApi GetMapSearchWithBlock:^(NSMutableArray *posts, NSError *error) {
         if (!error) {
+            if (nextBtnEnabled) {
+                self.nextBtn.enabled=nextBtnEnabled;
+            }
+            if (lastBtnEnabled) {
+                self.lastBtn.enabled=lastBtnEnabled;
+            }
+            
             CGPathCloseSubpath(pathRef);
             if([posts[1] intValue]%26 == 0){
                 allCount = [posts[1] intValue]/26;
@@ -520,11 +531,7 @@ int j;
                 //[self judgeBtnEnable];
             }
         }
-        self.nextBtn.enabled = YES;
-        self.lastBtn.enabled = YES;
     } longitude:[NSString stringWithFormat:@"%lf",centerLocation.longitude] latitude:[NSString stringWithFormat:@"%lf",centerLocation.latitude] radius:distance startIndex:tempStartIndex noNetWork:^{
-        self.nextBtn.enabled = YES;
-        self.lastBtn.enabled = YES;
         [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, kScreenHeight) superView:self.view reloadBlock:^{
             [self getMapSearch:centerLocation startIndex:YES dis:[NSString stringWithFormat:@"%f",dis/1000]];
         }];
@@ -575,8 +582,6 @@ int j;
 }
 
 -(void)nextPage{
-    self.nextBtn.enabled = NO;
-    self.lastBtn.enabled = NO;
     if (!self.nextBtn.enabled) {
         [[[UIAlertView alloc] initWithTitle:@"提示" message:@"没有找到项目" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil,nil]show];
         self.pageCount++;
@@ -594,8 +599,6 @@ int j;
 }
 
 -(void)lastPage{
-    self.nextBtn.enabled = NO;
-    self.lastBtn.enabled = NO;
     j = 0;
     [showArr removeAllObjects];
     [logArr removeAllObjects];
@@ -677,8 +680,6 @@ int j;
 -(void)judgeBtnEnable{
     self.nextBtn.enabled=(startIndex<allCount-1);
     self.lastBtn.enabled=(self.pageCount>1);
-    self.nextBtn.enabled = YES;
-    self.lastBtn.enabled = YES;
 }
 
 - (void)didFailToLocateUserWithError:(NSError *)error{
