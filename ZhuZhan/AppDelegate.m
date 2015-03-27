@@ -38,7 +38,7 @@
             NSLog(@"asdfasdf");
         }];
     });
-    return nil;
+
     if ([CLLocationManager locationServicesEnabled]) {
         
         self.locationManager = [[CLLocationManager alloc] init];

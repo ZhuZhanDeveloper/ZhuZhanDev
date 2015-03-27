@@ -31,22 +31,5 @@
             NSLog(@"Error: %@", error);
         }];
     }
-    
-    NSString* str=[arr JSONString];
-    NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];
-     [dataDic setObject:str forKey:@"data"];
-    NSString *urlStr = [NSString stringWithFormat:@"api/Contacts/ContactsAdd"];
-  //  NSString *urlStr = [NSString stringWithFormat:@"contact"];
-    //NSString *urlStr = [NSString stringWithFormat:@"api/test/post"];
-    NSLog(@"dataDic==%@",dataDic);
-    return [[AFAppDotNetAPIClient sharedClient] POST:urlStr parameters:dataDic success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON);
-        
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        NSLog(@"error ==> %@",error);
-        if (block) {
-            block([NSMutableArray array], error);
-        }
-    }];
 }
 @end
