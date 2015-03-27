@@ -655,7 +655,8 @@ int j;
     {
         BMKPolygonView* polygonView = [[BMKPolygonView alloc] initWithOverlay:overlay];
         polygonView.strokeColor = [[UIColor redColor] colorWithAlphaComponent:1];
-        polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
+        //polygonView.fillColor = [[UIColor cyanColor] colorWithAlphaComponent:0.2];
+        polygonView.fillColor = [UIColor colorWithRed:20/255 green:255/255 blue:100/255 alpha:0.2];
         polygonView.lineWidth =3.5;
 		return polygonView;
     }
