@@ -34,6 +34,7 @@ static NSString * const AFAppDotNetAPIBaseURLString = @serverAddress;
         _sharedClient = [[AFAppDotNetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppDotNetAPIBaseURLString]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
+       // [_sharedClient.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"content-type"];
     });
     return _sharedClient;
 }
