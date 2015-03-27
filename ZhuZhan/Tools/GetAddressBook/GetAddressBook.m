@@ -111,7 +111,8 @@
     [noDataKeys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [dataDic setObject:@"" forKey:obj];
     }];
-    [dataDic setObject:[[NSUUID UUID] UUIDString] forKey:@"createdBy"];
+    NSString *identifierForVendor = [[UIDevice currentDevice].identifierForVendor UUIDString];
+    [dataDic setObject:identifierForVendor forKey:@"createdBy"];
     return dataDic;
 }
 
