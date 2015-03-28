@@ -79,9 +79,10 @@
     self.navigationItem.titleView = bgView;
     
     startIndex = 0;
+    allStartIndex = 0;
     isReload = NO;
     showArr = [[NSMutableArray alloc] init];
-    
+    RecommendArr = [[NSMutableArray alloc] init];
     self.tableView.backgroundColor = RGBCOLOR(239, 237, 237);
     self.tableView.separatorStyle = NO;
     //集成刷新控件
@@ -95,7 +96,7 @@
         self.tableView.scrollEnabled = NO;
         sectionHeight = 0;
         loadingView = [LoadingView loadingViewWithFrame:CGRectMake(0, 0, 320, kScreenHeight) superView:self.view];
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, int count, NSError *error) {
             if(!error){
                 showArr = posts;
                 sectionHeight = 50;
@@ -198,9 +199,11 @@
 {
     NSMutableArray* localDatas=[ProjectSqlite loadList];
     if (!localDatas.count) {
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
             if(!error){
                 startIndex = 0;
+                allStartIndex = 0;
+                [RecommendArr removeAllObjects];
                 [showArr removeAllObjects];
                 showArr = posts;
                 isReload = NO;
@@ -233,6 +236,8 @@
             [ProjectApi LocalProjectWithBlock:^(NSMutableArray *posts, NSError *error) {
                 if(!error){
                     startIndex = 0;
+                    allStartIndex = 0;
+                    [RecommendArr removeAllObjects];
                     [showArr removeAllObjects];
                     showArr = posts;
                     isReload = YES;
@@ -260,16 +265,33 @@
 - (void)footerRereshing
 {
     if(!isReload){
-        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+        [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, int count, NSError *error) {
             if(!error){
                 startIndex++;
+                [RecommendArr addObjectsFromArray:posts];
                 [showArr addObjectsFromArray:posts];
-                if(showArr.count == 0){
-                    [MyTableView reloadDataWithTableView:self.tableView];
-                    [MyTableView hasData:self.tableView];
-                }else{
-                    [MyTableView removeFootView:self.tableView];
-                    [self.tableView reloadData];
+                if(RecommendArr.count < count || RecommendArr.count == 0){
+                    [ProjectApi GetListWithBlock:^(NSMutableArray *posts, NSError *error) {
+                        if(!error){
+                            allStartIndex++;
+                            [showArr addObjectsFromArray:posts];
+                            if(showArr.count == 0){
+                                [MyTableView reloadDataWithTableView:self.tableView];
+                                [MyTableView hasData:self.tableView];
+                            }else{
+                                [MyTableView removeFootView:self.tableView];
+                                [self.tableView reloadData];
+                            }
+                        }else{
+                            [LoginAgain AddLoginView:NO];
+                        }
+                        [self.tableView footerEndRefreshing];
+                    }startIndex:allStartIndex noNetWork:^{
+                        [self.tableView footerEndRefreshing];
+                        [ErrorView errorViewWithFrame:CGRectMake(0, 64, 320, 568-64) superView:self.view reloadBlock:^{
+                            [self footerRereshing];
+                        }];
+                    }];
                 }
             }else{
                 [LoginAgain AddLoginView:NO];
@@ -284,7 +306,7 @@
     }else{
         NSMutableArray* localDatas=[ProjectSqlite loadList];
         if(localDatas.count ==0){
-            [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+            [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count, NSError *error) {
                 if(!error){
                     startIndex++;
                     [showArr addObjectsFromArray:posts];

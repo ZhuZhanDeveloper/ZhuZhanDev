@@ -119,7 +119,7 @@
 }
 
 -(void)loadList{
-    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts,int count ,NSError *error) {
         if(!error){
             self.showArr = posts;
             [self.tableView reloadData];
@@ -137,7 +137,7 @@
 
 - (void)footerRereshing
 {
-    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, NSError *error) {
+    [ProjectApi GetRecommenddProjectsWithBlock:^(NSMutableArray *posts, int count, NSError *error) {
         if(!error){
             startIndex++;
             [self.showArr addObjectsFromArray:posts];

@@ -22,6 +22,7 @@
 @property(nonatomic,strong)UIButton* lastBtn;
 @property(nonatomic)NSInteger pageCount;
 @property(nonatomic,strong)LocationErrorView *errorView;
+@property(nonatomic)BOOL isClick;
 @end
 
 @implementation BaiDuMapViewController
@@ -42,6 +43,7 @@ int j;
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"地图搜索";
+    self.isClick = YES;
     //LeftButton设置属性
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setFrame:CGRectMake(0, 0, 25, 22)];
@@ -304,12 +306,6 @@ int j;
     if (annotationView == nil) {
         annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
 		[annotationView setImage:[GetImagePath getImagePath:@"地图搜索1_09"]];
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 28.5, 30)];
-//        label.textColor = [UIColor whiteColor];
-//        label.font = [UIFont fontWithName:nil size:14];
-//        label.text = [numberArr objectAtIndex:j];
-//        label.textAlignment = NSTextAlignmentCenter;
-//        [annotationView addSubview:label];
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(0, 0, 28.5, 30)];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -385,6 +381,8 @@ int j;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesBegan");
+    NSLog(@"%d",self.isClick);
     if(!bgView){
         if(imageView){
             UITouch *touch = [touches anyObject];
@@ -399,6 +397,8 @@ int j;
             
             CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
             [coordinates addObject:[NSValue valueWithMKCoordinate:coordinate]];
+            
+            imageView.userInteractionEnabled = NO;
         }
     }
 }
@@ -430,6 +430,7 @@ int j;
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesEnded");
     if(!bgView){
         if(imageView){
             UITouch *touch = [touches anyObject];
@@ -477,6 +478,10 @@ int j;
             }
         }
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        imageView.userInteractionEnabled = YES;
+    });
 }
 
 -(void)getMapSearch:(CLLocationCoordinate2D)Location startIndex:(BOOL)isNext dis:(NSString *)distance{

@@ -25,10 +25,10 @@
 //#define  serverAddress "http://10.1.5.100:801/"
 
 //正式用
-#define serverAddress "http://webapi.mybuilding.cn/"
+//#define serverAddress "http://webapi.mybuilding.cn/"
 
 //测试用
-//#define  serverAddress "http://dev.shenjigroup.com:2192/"
+#define  serverAddress "http://dev.shenjigroup.com:2192/"
 
 //预生产用
 //#define  serverAddress "http://api.shenjigroup.com/"

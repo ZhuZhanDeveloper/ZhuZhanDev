@@ -83,7 +83,7 @@
         return nil;
     }
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/AllProjects?pageSize=5&pageIndex=%d",startIndex];
-    
+    NSLog(@"urlStr===> %@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -745,7 +745,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"api/Projects/MapSearch?latitude=%@&longitude=%@&radius=%@&pageSize=26&pageIndex=%d",latitude,longitude,radius,startIndex];
     NSLog(@"urlStr==%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-        NSLog(@"JSON===>%@",JSON[@"d"]);
+        //NSLog(@"JSON===>%@",JSON[@"d"]);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
             NSMutableArray *mutablePosts = [[NSMutableArray alloc] init];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
@@ -774,7 +774,7 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
++ (NSURLSessionDataTask *)GetRecommenddProjectsWithBlock:(void (^)(NSMutableArray *posts, int count, NSError *error))block startIndex:(int)startIndex noNetWork:(void(^)())noNetWork{
     if (![ConnectionAvailable isConnectionAvailable]) {
         if (noNetWork) {
             noNetWork();
@@ -783,7 +783,7 @@
     }
     
     NSString *urlStr = [NSString stringWithFormat:@"api/Recommend/RecommendProjects?pageSize=5&pageIndex=%d",startIndex];
-    
+    NSLog(@"%@",urlStr);
     return [[AFAppDotNetAPIClient sharedNewClient] GET:urlStr parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
         NSLog(@"JSON===>%@",JSON);
         if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1300"]){
@@ -794,7 +794,7 @@
                 [mutablePosts addObject:model];
             }
             if (block) {
-                block([NSMutableArray arrayWithArray:mutablePosts], nil);
+                block([NSMutableArray arrayWithArray:mutablePosts],[JSON[@"d"][@"status"][@"totalCount"] intValue] ,nil);
             }
         }else if([[NSString stringWithFormat:@"%@",JSON[@"d"][@"status"][@"statusCode"]]isEqualToString:@"1302"]){
             
@@ -805,7 +805,7 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         NSLog(@"error ==> %@",error);
         if (block) {
-            block([NSMutableArray array], error);
+            block([NSMutableArray array],0, error);
         }
     }];
 }
